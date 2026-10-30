@@ -9,7 +9,7 @@
   */
   const I18N = {
     es: {
-      docTitle: "Gonver Estudio · Videojuegos",
+      docTitle: "Gonver Estudio",
       docDesc: "Gonver Estudio crea videojuegos. Ahora en desarrollo: Path to the Sanctuary, diez comarcas, cien sendas y un trono que alcanzar.",
       skip: "Saltar al contenido",
       home: "Gonver Estudio, inicio",
