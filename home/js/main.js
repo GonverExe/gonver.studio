@@ -22,7 +22,7 @@
       menuClose: "Cerrar el menú",
       langLabel: "Idioma",
 
-      heroEyebrow: "Nuevo juego · En alfa",
+      heroEyebrow: "Beta",
       sendaTagline: "Diez comarcas, cien sendas y un trono que alcanzar.",
       watchTrailer: "Ver tráiler",
       discoverGame: "Descubrir el juego",
@@ -35,7 +35,7 @@
       gamesLead: "Cada juego de Gonver Estudio se forja a fuego lento. Este es nuestro catálogo, y no ha hecho más que empezar.",
       gameSite: "Web del juego",
       status_released: "Disponible",
-      status_alpha: "En alfa",
+      status_beta: "En beta",
       status_development: "En desarrollo",
       status_soon: "Próximamente",
       soonHeadline: "Algo nuevo se está forjando",
@@ -48,7 +48,7 @@
       p1Title: "Hecho a código",
       p1Text: "En Path to the Sanctuary todo está dibujado a código, sin assets externos. Cada píxel tiene un porqué.",
       p2Title: "Desarrollo a la vista",
-      p2Text: "Cada actualización se publica con su historial, versión a versión. Puedes ver cómo crece el juego desde la primera alfa.",
+      p2Text: "Cada actualización se publica con su historial, versión a versión. Puedes ver cómo crece el juego desde la primera versión.",
       p3Title: "La comunidad decide",
       p3Text: "Las ideas y los errores que envías se votan en un tablón público. Lo más votado es lo que llega antes.",
 

@@ -581,6 +581,9 @@ ul { padding: 0; list-style: none; }
 
 .senda-line { display: block; }
 
+/* PATH un poco más arriba: su sombra roja no debe rozar «TO THE» */
+.senda-line:first-child { margin-bottom: .14em; }
+
 .senda-link {
   display: flex;
   align-items: center;

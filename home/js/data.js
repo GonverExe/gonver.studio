@@ -33,7 +33,7 @@ const STUDIO = {
     title        Nombre del juego.
     kanji        Subtítulo decorativo (p. ej. en japonés).
     pixel        true = el título se escribe con la fuente de puntos del juego.
-    status       "released" (Disponible) · "alpha" (En alfa) · "development" (En desarrollo) · "soon" (Próximamente)
+    status       "released" (Disponible) · "beta" (En beta) · "development" (En desarrollo) · "soon" (Próximamente)
     genre        Género.
     description  Descripción corta.
     platforms    Plataformas, p. ej. ["PC"].
@@ -50,7 +50,7 @@ const GAMES = [
     title: "Path to the Sanctuary",
     kanji: "聖域への道",
     pixel: true,
-    status: "alpha",
+    status: "beta",
     genre: "Acción · Pixel art",
     description: "Diez comarcas de diez sendas cada una. Se baja matando lo que salga al paso hasta que la puerta se abre, y al final del camino espera un trono.",
     platforms: ["PC"],
@@ -76,7 +76,7 @@ const GAMES = [
 const NEWS = {
   game: "Path to the Sanctuary",
   supabase: SENDA_CONFIG.supabase,
-  page: "games/path-to-the-sanctuary/actualizaciones",
+  page: "games/path-to-the-sanctuary/actualizaciones.html",
   cover: "games/path-to-the-sanctuary/assets/img/still.jpg",
   count: 3,
 };

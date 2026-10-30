@@ -2,17 +2,39 @@
 
 /* ---------- Portada ---------- */
 
+/* La portada ocupa justo la pantalla y no se desplaza */
+html:has(.portada),
+html:has(.portada) body {
+  height: 100%;
+  overflow: hidden;
+}
+
 .portada {
   position: relative;
   display: grid;
-  grid-template-rows: 1fr auto 1fr;
+  grid-template-rows: minmax(0, 1fr) auto;
   grid-template-columns: minmax(0, 1fr);
-  min-height: 100vh;
-  min-height: 100svh;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
   padding: 84px 16px 28px;
 }
 
-.hero { translate: 0 -90px; }
+/* El hueco de arriba ya no hace falta: el rótulo se centra en el espacio sobre el pie */
+.portada > div:empty { display: none; }
+
+.hero {
+  align-self: center;
+  translate: 0 -23px;
+}
+
+/* Pantallas bajas: el rótulo y los botones se encogen para que todo quepa sin scroll */
+@media (max-height: 860px) { .hero { scale: .9; } }
+@media (max-height: 760px) { .hero { scale: .8; } .portada__pie p { display: none; } }
+@media (max-height: 660px) { .hero { scale: .7; } }
+
+/* En pantallas estrechas, el pie deja sitio al botón de pausa de la esquina */
+@media (max-width: 640px) { .portada__pie { padding-inline: 48px; } }
 
 .portada__rotulo { align-self: end; padding-bottom: clamp(28px, 6vh, 64px); }
 
@@ -68,16 +90,6 @@
   letter-spacing: .24em;
   color: rgba(251, 238, 226, .62);
 }
-
-.portada__estudio {
-  font-size: 12px;
-  letter-spacing: .24em;
-  color: var(--oro);
-  text-decoration: none;
-  transition: color .12s ease;
-}
-
-.portada__estudio:hover { color: var(--oro-palido); }
 
 .sello {
   display: inline-block;

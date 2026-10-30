@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
-    // tablon.html -> tablon: el servidor (GitHub Pages) sirve las dos, en la barra se ve la limpia
-    if (/^https?:$/.test(location.protocol) && /\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(index)?\.html$/, "") + location.search + location.hash);
+    // tablon.html -> tablon: los enlaces van al .html (funciona en cualquier servidor) y en la web publicada la barra muestra la ruta limpia
+    if (/^https?:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && /\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(index)?\.html$/, "") + location.search + location.hash);
   </script>
   <title>Tablón · Path to the Sanctuary</title>
   <meta name="description" content="Ideas y errores de Path to the Sanctuary: propón lo que te gustaría ver, avisa de lo que falla y vota lo que más importa.">
@@ -38,7 +38,7 @@
     </div>
 
     <nav class="aportar aparece aparece--4" aria-label="Aportar">
-      <a class="boton boton--principal" href="enviar" data-aportar>
+      <a class="boton boton--principal" href="enviar.html" data-aportar>
         <i class="boton__doble" aria-hidden="true"></i>
         <span>aportar</span>
       </a>

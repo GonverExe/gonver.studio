@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
-    // tablon.html -> tablon: el servidor (GitHub Pages) sirve las dos, en la barra se ve la limpia
-    if (/^https?:$/.test(location.protocol) && /\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(index)?\.html$/, "") + location.search + location.hash);
+    // tablon.html -> tablon: los enlaces van al .html (funciona en cualquier servidor) y en la web publicada la barra muestra la ruta limpia
+    if (/^https?:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && /\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(index)?\.html$/, "") + location.search + location.hash);
   </script>
   <title>Path to the Sanctuary</title>
   <meta name="description" content="Path to the Sanctuary (聖域への道): diez comarcas de diez sendas cada una. Se baja matando lo que salga al paso hasta que la puerta se abre.">
@@ -28,6 +28,10 @@
 
   <button class="mando mando--pausa" type="button" data-pausa-fondo aria-label="Pausar el vídeo de fondo"></button>
 
+  <header class="barra">
+    <a class="boton boton--callado boton--chico" href="../../" aria-label="Volver a Gonver Estudio"><span>VOLVER</span></a>
+  </header>
+
   <main class="portada">
     <div></div>
 
@@ -47,8 +51,8 @@
           <i class="boton__doble" aria-hidden="true"></i>
           <span>VER EN STEAM</span>
         </a>
-        <a class="boton" href="actualizaciones"><span>ACTUALIZACIONES</span></a>
-        <a class="boton boton--callado" href="tablon">
+        <a class="boton" href="actualizaciones.html"><span>ACTUALIZACIONES</span></a>
+        <a class="boton boton--callado" href="tablon.html">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 4h18v12H10l-5 4.5V16H3z"/></svg>
           <span>IDEAS Y ERRORES</span>
         </a>
@@ -56,9 +60,8 @@
     </div>
 
     <footer class="portada__pie">
-      <span class="sello">ALFA</span>
+      <span class="sello">BETA</span>
       <p>Todo dibujado a codigo sin assets externos</p>
-      <a class="portada__estudio" href="../../">UN JUEGO DE GONVER ESTUDIO</a>
     </footer>
   </main>
 
