@@ -1,20 +1,17 @@
 /*
-  Datos de Gonver Estudio
-  =======================
-  Todo lo que cambia a menudo está aquí: no hace falta tocar main.js.
-
-  Los textos pueden ser una cadena ("Hola") o, cuando toque traducir, un objeto
-  { es: "Hola", en: "Hello" }. Si falta el inglés se usa el español.
+  Datos de Gonver Estudio: lo que cambia a menudo, sin tocar main.js.
+  title, titleLines, genre y description admiten una cadena o { es, en }
+  (si falta el inglés se usa el español).
 */
 
 // Enlace de Steam y claves de Supabase del juego (games/path-to-the-sanctuary/js/config.js)
 const SENDA_CONFIG = window.SENDA || {};
 
 const STUDIO = {
-  // Correo de contacto. Vacío = no se muestra en el pie.
+  // Correo de contacto (vacío = no se muestra)
   email: "",
 
-  // Redes sociales: pon la URL de las que uses. Las vacías no se muestran.
+  // Redes del pie: las vacías no se muestran
   socials: {
     YouTube: "",
     TikTok: "",
@@ -26,28 +23,20 @@ const STUDIO = {
 };
 
 /*
-  Juegos: cada objeto es una franja diagonal de la sección «Juegos», en este orden.
-  Un objeto vacío {} es un hueco «Próximamente».
-
-  Campos (todos opcionales):
-    title        Nombre del juego.
-    titleLines   El nombre partido en líneas: en la franja cerrada se escribe recto y centrado.
-                 Sin él, el nombre va en diagonal a lo largo de la franja.
-    kanji        Subtítulo decorativo (p. ej. en japonés).
-    pixel        true = el título se escribe con la fuente de puntos del juego.
-    status       "released" (Disponible) · "beta" (En beta) · "development" (En desarrollo) · "soon" (Próximamente)
-    genre        Género.
-    description  Descripción corta.
-    platforms    Plataformas, p. ej. ["PC"].
-    site         Web del juego.
-    steam        Página de Steam.
-    trailer      Vídeo del tráiler: el botón de la franja lo abre con sonido.
-    cover        Imagen de fondo de la franja.
-    logo         Logo del juego: va en la franja en lugar del número. Sin él, el del estudio.
-    version      Versión actual: va junto al logo en lugar de la rayita.
-    accent       Color de la franja. Si no se indica, se usa el cian de la marca.
-    accent2      Segundo color del degradado de los botones.
-    onAccent     Color del texto sobre los botones (por defecto, casi negro).
+  Juegos: una franja por objeto, en este orden. {} = hueco «Próximamente».
+  Campos (opcionales):
+    title        Nombre.
+    titleLines   Nombre en líneas (recto y centrado); sin él, va en diagonal.
+    kanji        Subtítulo decorativo.
+    pixel        true = título con la fuente de puntos del juego.
+    status       "released" · "beta" · "development" · "soon"
+    genre, description, platforms (["PC"])
+    site, steam  Enlaces a la web del juego y a Steam.
+    trailer      Vídeo que abre el botón «Ver tráiler».
+    cover        Imagen de fondo.
+    logo         Logo de la franja (si no, el del estudio).
+    version      Versión junto al logo.
+    accent, accent2, onAccent  Colores de la franja, del degradado y del texto de los botones.
 */
 const GAMES = [
   {
@@ -75,10 +64,12 @@ const GAMES = [
 ];
 
 /*
-  Noticias: se leen del historial de actualizaciones del juego (Supabase).
-  game   Nombre que aparece en cada tarjeta.
-  page   Página donde se lee el historial completo.
-  cover  Imagen si la actualización no trae capturas.
+  Noticias: últimas entradas del historial del juego (Supabase).
+    game      Nombre en cada tarjeta.
+    supabase  { url, clave, tabla } de config.js.
+    page      Página del historial completo.
+    cover     Imagen si la entrada no trae capturas.
+    count     Cuántas tarjetas se muestran.
 */
 const NEWS = {
   game: "Path to the Sanctuary",

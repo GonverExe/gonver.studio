@@ -1,8 +1,6 @@
 /* index.css - estilos de la portada */
 
-/* ---------- Portada ---------- */
-
-/* La portada ocupa justo la pantalla y no se desplaza */
+/* la portada ocupa justo la pantalla y no se desplaza */
 html:has(.portada),
 html:has(.portada) body {
   height: 100%;
@@ -20,9 +18,6 @@ html:has(.portada) body {
   padding: 84px 16px 28px;
 }
 
-/* El hueco de arriba ya no hace falta: el rótulo se centra en el espacio sobre el pie */
-.portada > div:empty { display: none; }
-
 .hero {
   align-self: center;
   translate: 0 -23px;
@@ -36,7 +31,7 @@ html:has(.portada) body {
 /* En pantallas estrechas, el pie deja sitio al botón de pausa de la esquina */
 @media (max-width: 640px) { .portada__pie { padding-inline: 48px; } }
 
-.portada__rotulo { align-self: end; padding-bottom: clamp(28px, 6vh, 64px); }
+.portada__rotulo { padding-bottom: clamp(28px, 6vh, 64px); }
 
 /* "TO THE" entre los dos renglones del titular */
 .enlace {

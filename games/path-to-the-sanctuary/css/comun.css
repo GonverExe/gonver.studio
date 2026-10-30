@@ -377,7 +377,7 @@ a { color: inherit; }
 
 .raya {
   height: 1px;
-  margin: 16px 0 16px;
+  margin: 16px 0;
   background: linear-gradient(to right, rgba(255, 198, 92, .75), rgba(255, 198, 92, 0) 80%);
 }
 

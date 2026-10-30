@@ -29,9 +29,9 @@
   <link rel="stylesheet" href="home/css/styles.css">
   <script>
     document.documentElement.classList.add("js");
-    // Si algún script falla, que no se quede nada escondido esperando su animación
+    // Si un script falla, que no quede nada oculto esperando su animación
     window.addEventListener("error", () => document.documentElement.classList.remove("js"), { once: true });
-    // index.html -> /: los enlaces van al .html (funciona en cualquier servidor) y en la web publicada la barra muestra la ruta limpia
+    // En la web publicada, la barra muestra la ruta sin .html
     if (/^https?:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && /\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(index)?\.html$/, "") + location.search + location.hash);
   </script>
 </head>
@@ -256,7 +256,7 @@
     </div>
   </dialog>
 
-  <!-- Enlace de Steam y Supabase del juego: un solo sitio para las claves -->
+  <!-- Steam y Supabase del juego (SENDA_CONFIG) -->
   <script src="games/path-to-the-sanctuary/js/config.js"></script>
   <script src="home/js/data.js"></script>
   <script src="home/js/main.js"></script>

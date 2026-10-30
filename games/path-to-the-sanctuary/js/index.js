@@ -3,8 +3,6 @@
 (function () {
   "use strict";
 
-  const config = window.SENDA || {};
-  document.querySelectorAll("[data-steam]").forEach((enlace) => {
-    if (config.steam) enlace.href = config.steam;
-  });
+  const steam = (window.SENDA || {}).steam;
+  if (steam) document.querySelectorAll("[data-steam]").forEach((enlace) => { enlace.href = steam; });
 })();

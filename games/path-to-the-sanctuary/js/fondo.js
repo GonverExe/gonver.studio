@@ -93,7 +93,7 @@
 
   let w = 0;
   let h = 0;
-  // en pantallas estrechas los pétalos se ven igual de grandes, así que menos
+  // tamaño y deriva de los pétalos según el ancho de la pantalla
   let escala = 1;
 
   function medir() {
@@ -128,16 +128,16 @@
       ctx.restore();
     }
 
+    ctx.globalAlpha = 1;
     for (const b of BRASAS) {
       const p = ((t + b[4]) % b[3]) / b[3];
-      const opacidad = p < 0.2 ? (p / 0.2) * 0.9 : 0.9 + (0 - 0.9) * ((p - 0.2) / 0.8);
-      const radio = b[2] * 0.5 * (1 + (0.4 - 1) * p);
+      const opacidad = p < 0.2 ? (p / 0.2) * 0.9 : 0.9 * (1 - (p - 0.2) / 0.8);
+      const radio = b[2] * 0.5 * (1 - 0.6 * p);
       const cx = w * b[0] + b[2] * 0.5;
       const cy = h - h * b[1] - b[2] * 0.5 - h * 0.46 * p;
       const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, radio + 10);
       halo.addColorStop(0, `rgba(255,150,66,${(140 / 255) * opacidad})`);
       halo.addColorStop(1, "rgba(255,150,66,0)");
-      ctx.globalAlpha = 1;
       ctx.fillStyle = halo;
       ctx.beginPath();
       ctx.arc(cx, cy, radio + 10, 0, Math.PI * 2);

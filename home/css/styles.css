@@ -2,7 +2,7 @@
    Gonver Estudio · web del estudio
    ========================================================= */
 
-/* La fuente de puntos de Path to the Sanctuary, para el título del juego */
+/* Fuente de puntos de Path to the Sanctuary */
 @font-face {
   font-family: "Senda";
   src: url("../../games/path-to-the-sanctuary/assets/fuentes/senda_font.ttf") format("truetype");
@@ -89,7 +89,7 @@ body.dialog-open { overflow: hidden; }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
-h1, h2, h3, p, ul, dl, dd { margin: 0; }
+h1, h2, h3, p, ul { margin: 0; }
 ul { padding: 0; list-style: none; }
 [hidden] { display: none !important; }
 
@@ -128,7 +128,7 @@ ul { padding: 0; list-style: none; }
 
 /* ---------- Botones ---------- */
 
-/* Fondo inclinado, como las franjas de la web anterior */
+/* Fondo inclinado en el ::before */
 .btn {
   position: relative;
   isolation: isolate;
@@ -256,8 +256,7 @@ ul { padding: 0; list-style: none; }
   transition: opacity .4s;
 }
 
-/* Fondo y desenfoque en una capa aparte: si los llevara la propia cabecera,
-   el panel fijo del menú móvil quedaría encerrado dentro de ella */
+/* Fondo en capa aparte: en la cabecera atraparía el panel fijo del menú móvil */
 .site-header::after {
   content: "";
   position: absolute;
@@ -531,8 +530,7 @@ ul { padding: 0; list-style: none; }
   color: var(--senda-gold);
 }
 
-.eyebrow-dot,
-.status-dot {
+.eyebrow-dot {
   width: .5rem;
   height: .5rem;
   flex: none;
@@ -758,12 +756,12 @@ ul { padding: 0; list-style: none; }
 
 /* ---------- Juegos: franjas diagonales ---------- */
 
-/* A todo el ancho y pegadas a la sección Estudio, sin hueco ni línea entre medias */
+/* A todo el ancho y pegadas a la sección Estudio */
 .games {
   --track-h: clamp(26rem, 72vh, 40rem);
-  /* Inclinación de las franjas, la misma que la de los botones: tan(12°) × alto */
+  /* Inclinación de 12°, como los botones: tan(12°) × alto */
   --slant: calc(var(--track-h) * .2126);
-  /* Ancho visible de cada franja plegada mientras otra está abierta */
+  /* Ancho visible de una franja plegada */
   --band-min: 3.5rem;
   position: relative;
   height: var(--track-h);
@@ -776,9 +774,7 @@ ul { padding: 0; list-style: none; }
 #juegos { padding-bottom: 0; }
 #juegos + .studio { border-top: 0; }
 
-/* Entrada y salida suaves: arriba las franjas nacen del fondo de la página y abajo
-   se funden con el de Estudio. Una línea fina de la marca, que se apaga en los
-   extremos, marca cada borde */
+/* Fundidos arriba y abajo, con una línea fina de la marca en cada borde */
 .games::before,
 .games::after {
   --brand-line: linear-gradient(90deg, transparent, color-mix(in srgb, var(--cyan) 55%, transparent) 30%, color-mix(in srgb, var(--aqua) 55%, transparent) 70%, transparent);
@@ -787,7 +783,6 @@ ul { padding: 0; list-style: none; }
   left: 0;
   right: 0;
   z-index: 9;
-  height: clamp(3.5rem, 9vh, 5.5rem);
   pointer-events: none;
 }
 
@@ -801,6 +796,7 @@ ul { padding: 0; list-style: none; }
 
 .games::after {
   bottom: 0;
+  height: clamp(3.5rem, 9vh, 5.5rem);
   background:
     var(--brand-line) bottom / 100% 1px no-repeat,
     linear-gradient(to bottom, transparent, color-mix(in srgb, var(--bg-2) 75%, transparent) 70%, var(--bg-2));
@@ -813,11 +809,7 @@ ul { padding: 0; list-style: none; }
   height: 100%;
 }
 
-/*
-  Cada franja es un paralelogramo recortado con clip-path y solapado con la siguiente
-  (margen negativo = --slant). Los extremos tienen el lado exterior recto. Los anchos
-  están calculados para que, abiertas o cerradas, sumen siempre el ancho de la sección.
-*/
+/* Paralelogramos con clip-path solapados --slant; los anchos suman siempre el 100 % */
 .stripe {
   /* Distancia del borde inclinado para los degradados a 102deg: slant × cos(12°) */
   --edge: calc(var(--slant) * .9781);
@@ -1112,7 +1104,7 @@ ul { padding: 0; list-style: none; }
     calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
 }
 
-/* Con otra franja abierta, la banda es demasiado estrecha para el nombre recto */
+/* Plegada, la banda es demasiado estrecha para el nombre recto */
 .track.has-active .stripe:not(.is-active) .stripe-label.is-upright {
   visibility: hidden;
   opacity: 0;
@@ -1120,7 +1112,7 @@ ul { padding: 0; list-style: none; }
 }
 .track.has-active .stripe:not(.is-active) .stripe-num::after { width: 0; opacity: 0; }
 
-/* La versión del juego ocupa el sitio de la rayita y, como ella, se abre al pasar el ratón */
+/* La versión sustituye a la rayita del número */
 .stripe-num.has-version::after { content: none; }
 
 .stripe-version {
@@ -1194,10 +1186,7 @@ ul { padding: 0; list-style: none; }
   50% { translate: 0 -.9rem; }
 }
 
-/*
-  Panel de información. El panel se inclina como la franja y cada hijo se endereza:
-  así las filas quedan escalonadas en paralelo al borde inclinado.
-*/
+/* Panel inclinado con los hijos enderezados: filas escalonadas junto al borde */
 .stripe-panel {
   position: absolute;
   left: clamp(1.25rem, 3vw, 3rem);
@@ -1269,10 +1258,8 @@ ul { padding: 0; list-style: none; }
   font-weight: 400;
   letter-spacing: .05em;
   text-transform: uppercase;
-  background: none;
   color: var(--senda-cream);
   text-shadow: .07em .085em 0 var(--senda-red);
-  filter: none;
 }
 
 .panel-desc {
@@ -1492,10 +1479,6 @@ ul { padding: 0; list-style: none; }
 
   .stripe-bg::after {
     background: repeating-linear-gradient(173.16deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 1.25rem);
-  }
-
-  .stripe-bg.has-cover::after {
-    background: linear-gradient(to top, rgba(4, 7, 12, .85), rgba(4, 7, 12, .15) 55%, rgba(4, 7, 12, .45));
   }
 
   .stripe-num {
@@ -1877,7 +1860,7 @@ ul { padding: 0; list-style: none; }
   filter: saturate(.8);
 }
 
-/* El cielo de atardecer de la web del juego */
+/* Cielo de atardecer del juego */
 .community-bg::after {
   content: "";
   position: absolute;

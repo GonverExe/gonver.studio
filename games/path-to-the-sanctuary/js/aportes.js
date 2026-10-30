@@ -132,7 +132,7 @@ window.Aportes = (function () {
     return (ESTADOS[a.estado] || ESTADOS.abierto)[a.tipo === "error" ? "error" : "idea"];
   }
 
-  // como en Mojira: IDEA-12, ERR-40. Es el mismo id que tiene en la base de datos
+  // el id de la base de datos ya es el código: IDEA-12, ERR-40
   function codigo(a) {
     return String(a.id);
   }

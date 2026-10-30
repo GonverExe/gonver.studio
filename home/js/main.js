@@ -80,7 +80,6 @@
       follow: "Síguenos",
       rights: "Todos los derechos reservados.",
       toTop: "Volver arriba",
-      close: "Cerrar",
       trailerTitle: "Tráiler de Path to the Sanctuary",
     },
     en: {},
@@ -111,7 +110,6 @@
   const trackEl = document.querySelector("[data-track]");
   const newsEl = document.querySelector("[data-news]");
   const toastEl = document.querySelector("[data-toast]");
-  const hero = document.querySelector(".hero");
   const heroVideo = document.querySelector(".hero-video");
   const videoToggle = document.querySelector("[data-video-toggle]");
   const dialog = document.querySelector("[data-trailer-dialog]");
@@ -168,10 +166,11 @@
 
   // Sin color propio, la franja usa el cian de la marca
   function accentStyle(game, i) {
+    const accent2 = game.accent2 || game.accent;
     return [
       `--i:${i}`,
       game.accent && `--accent:${game.accent}`,
-      (game.accent2 || game.accent) && `--accent-2:${game.accent2 || game.accent}`,
+      accent2 && `--accent-2:${accent2}`,
       game.onAccent && `--on-accent:${game.onAccent}`,
     ].filter(Boolean).join(";");
   }
@@ -186,6 +185,7 @@
     const platforms = (game.platforms || []).map((p) => `<li>${esc(p)}</li>`).join("");
     const pixel = game.pixel ? " is-pixel" : "";
     const logo = game.logo || "home/assets/logo.png";
+    const logoPixel = game.logo ? " is-pixel" : "";
     const lines = !soon && game.titleLines
       && game.titleLines.map((line) => `<span class="stripe-title-line">${esc(pick(line))}</span>`).join("");
     const actions = [
@@ -197,9 +197,9 @@
     return `
       <div class="stripe-bg${game.cover ? " has-cover" : ""}"></div>
       <div class="stripe-shade"></div>
-      <img class="stripe-art${game.logo ? " is-pixel" : ""}" src="${esc(logo)}" alt="" loading="lazy">
+      <img class="stripe-art${logoPixel}" src="${esc(logo)}" alt="" loading="lazy">
       <div class="stripe-face" aria-hidden="true">
-        <span class="stripe-num${game.version ? " has-version" : ""}"><img class="stripe-logo${game.logo ? " is-pixel" : ""}" src="${esc(logo)}" alt="">${game.version ? `<span class="stripe-version">${esc(game.version)}</span>` : ""}</span>
+        <span class="stripe-num${game.version ? " has-version" : ""}"><img class="stripe-logo${logoPixel}" src="${esc(logo)}" alt="">${game.version ? `<span class="stripe-version">${esc(game.version)}</span>` : ""}</span>
         <span class="stripe-label${lines ? " is-upright" : ""}">
           <span class="stripe-title${pixel}">${lines || esc(title)}</span>
           ${soon ? "" : `<span class="stripe-status">${esc(status)}</span>`}
@@ -252,25 +252,24 @@
     stripes[index]?.querySelector(".stripe-hit").focus({ preventScroll: true });
   }
 
+  function closeStripe(index) {
+    setStripe(-1);
+    focusStripe(index);
+  }
+
   trackEl.addEventListener("click", (event) => {
     const stripe = event.target.closest(".stripe");
     if (!stripe) return;
     const index = stripes.indexOf(stripe);
-    if (event.target.closest("[data-close-stripe]")) {
-      setStripe(-1);
-      focusStripe(index);
-    } else if (event.target.closest(".stripe-hit")) {
-      setStripe(index === active ? -1 : index);
-    }
+    if (event.target.closest("[data-close-stripe]")) closeStripe(index);
+    else if (event.target.closest(".stripe-hit")) setStripe(index === active ? -1 : index);
   });
 
   // Teclado: Escape cierra y las flechas pasan de franja (solo con el foco dentro)
   trackEl.addEventListener("keydown", (event) => {
     if (active === -1) return;
     if (event.key === "Escape") {
-      const index = active;
-      setStripe(-1);
-      focusStripe(index);
+      closeStripe(active);
       return;
     }
     const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
@@ -291,6 +290,8 @@
   });
 
   // ---------- Noticias (historial de actualizaciones del juego) ----------
+
+  const newsCount = NEWS.count || 3;
 
   // "2026-09-20" como fecha local, no como medianoche UTC
   function dateOf(text) {
@@ -339,7 +340,7 @@
       rows.sort((a, b) =>
         String(b.fecha || "").localeCompare(String(a.fecha || "")) ||
         String(b.version || "").localeCompare(String(a.version || ""), "es", { numeric: true }));
-      news = { state: rows.length ? "ready" : "empty", rows: rows.slice(0, NEWS.count || 3) };
+      news = { state: rows.length ? "ready" : "empty", rows: rows.slice(0, newsCount) };
     } catch (error) {
       console.warn("No se han podido leer las noticias:", error);
       news = { state: "error", rows: [] };
@@ -386,7 +387,7 @@
 
     if (news.state === "loading") {
       const skeleton = '<div class="news-card is-skeleton" aria-hidden="true"><div class="news-media"></div><div class="news-body"><span></span><span></span><span></span></div></div>';
-      newsEl.innerHTML = skeleton.repeat(NEWS.count || 3);
+      newsEl.innerHTML = skeleton.repeat(newsCount);
       return;
     }
 

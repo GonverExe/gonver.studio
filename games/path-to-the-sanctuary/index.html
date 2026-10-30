@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
-    // tablon.html -> tablon: los enlaces van al .html (funciona en cualquier servidor) y en la web publicada la barra muestra la ruta limpia
+    // en la web publicada, la barra muestra la ruta sin .html
     if (/^https?:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && /\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(index)?\.html$/, "") + location.search + location.hash);
   </script>
   <title>Path to the Sanctuary</title>
@@ -33,8 +33,6 @@
   </header>
 
   <main class="portada">
-    <div></div>
-
     <div class="hero">
       <div class="rotulo portada__rotulo">
         <p class="rotulo__kanji aparece" lang="ja"><span>聖域への道</span></p>
