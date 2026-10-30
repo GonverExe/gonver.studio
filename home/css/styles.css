@@ -767,25 +767,40 @@ ul { padding: 0; list-style: none; }
   overflow: hidden;
   overflow: clip;
   container-type: inline-size;
-  border-top: 1px solid var(--line);
   background: var(--surface);
 }
 
 #juegos { padding-bottom: 0; }
 #juegos + .studio { border-top: 0; }
 
-/* Paso suave a la sección Estudio: las franjas se funden con su fondo
-   y una línea fina de la marca, que se apaga en los extremos, marca el corte */
+/* Entrada y salida suaves: arriba las franjas nacen del fondo de la página y abajo
+   se funden con el de Estudio. Una línea fina de la marca, que se apaga en los
+   extremos, marca cada borde */
+.games::before,
 .games::after {
+  --brand-line: linear-gradient(90deg, transparent, color-mix(in srgb, var(--cyan) 55%, transparent) 30%, color-mix(in srgb, var(--aqua) 55%, transparent) 70%, transparent);
   content: "";
   position: absolute;
-  inset: auto 0 0;
+  left: 0;
+  right: 0;
   z-index: 9;
   height: clamp(3.5rem, 9vh, 5.5rem);
-  background:
-    linear-gradient(90deg, transparent, color-mix(in srgb, var(--cyan) 55%, transparent) 30%, color-mix(in srgb, var(--aqua) 55%, transparent) 70%, transparent) bottom / 100% 1px no-repeat,
-    linear-gradient(to bottom, transparent, color-mix(in srgb, var(--bg-2) 75%, transparent) 70%, var(--bg-2));
   pointer-events: none;
+}
+
+.games::before {
+  top: 0;
+  height: clamp(2.5rem, 6vh, 4rem);
+  background:
+    var(--brand-line) top / 100% 1px no-repeat,
+    linear-gradient(to top, transparent, color-mix(in srgb, var(--bg) 70%, transparent) 65%, var(--bg));
+}
+
+.games::after {
+  bottom: 0;
+  background:
+    var(--brand-line) bottom / 100% 1px no-repeat,
+    linear-gradient(to bottom, transparent, color-mix(in srgb, var(--bg-2) 75%, transparent) 70%, var(--bg-2));
 }
 
 .track {
@@ -1274,7 +1289,7 @@ ul { padding: 0; list-style: none; }
 /* Mismo botón redondo que el de pausa del vídeo */
 .stripe-close {
   position: absolute;
-  top: clamp(.9rem, 2.5vh, 1.5rem);
+  top: clamp(2.75rem, 6.5vh, 4.25rem);
   right: calc(var(--slant) * .1 + clamp(.9rem, 2vw, 1.75rem));
   z-index: 7;
   display: grid;
@@ -1357,6 +1372,9 @@ ul { padding: 0; list-style: none; }
 
   .track { flex-direction: column; }
 
+  /* La primera banda es baja: el fundido de arriba, más corto */
+  .games::before { height: 1.75rem; }
+
   .stripe {
     /* slant × cos(6,84°) para los degradados a 173.16deg */
     --edge: calc(var(--slant) * .9929);
@@ -1434,7 +1452,7 @@ ul { padding: 0; list-style: none; }
   .stripe-num {
     left: auto;
     right: 1.1rem;
-    top: .7rem;
+    top: 1.4rem;
     bottom: auto;
     flex-direction: row-reverse;
   }
@@ -1504,7 +1522,7 @@ ul { padding: 0; list-style: none; }
   .panel-actions .btn { flex: 1 1 auto; }
 
   .stripe-close {
-    top: .9rem;
+    top: 2rem;
     right: 1rem;
   }
 }
