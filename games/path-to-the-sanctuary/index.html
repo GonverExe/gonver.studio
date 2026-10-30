@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // tablon.html -> tablon: el servidor (GitHub Pages) sirve las dos, en la barra se ve la limpia
+    if (/^https?:$/.test(location.protocol) && /\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(index)?\.html$/, "") + location.search + location.hash);
+  </script>
+  <title>Path to the Sanctuary</title>
+  <meta name="description" content="Path to the Sanctuary (聖域への道): diez comarcas de diez sendas cada una. Se baja matando lo que salga al paso hasta que la puerta se abre.">
+  <meta name="theme-color" content="#160d1c">
+  <meta property="og:title" content="Path to the Sanctuary">
+  <meta property="og:description" content="Diez comarcas, cien sendas y un trono que alcanzar.">
+  <link rel="icon" href="assets/img/icono.png" type="image/png" sizes="256x256">
+  <link rel="stylesheet" href="css/fuente.css">
+  <link rel="stylesheet" href="css/comun.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <div class="fondo" aria-hidden="true">
+    <video class="fondo__video" src="assets/video/trailer.mp4" autoplay muted loop playsinline preload="auto"></video>
+    <div class="fondo__velo"></div>
+    <div class="fondo__vineta"></div>
+    <canvas class="fondo__petalos"></canvas>
+  </div>
+
+  <button class="mando mando--pausa" type="button" data-pausa-fondo aria-label="Pausar el vídeo de fondo"></button>
+
+  <main class="portada">
+    <div></div>
+
+    <div class="hero">
+      <div class="rotulo portada__rotulo">
+        <p class="rotulo__kanji aparece" lang="ja"><span>聖域への道</span></p>
+        <h1 class="aparece aparece--2">
+          <span class="titular">PATH</span>
+          <span class="enlace"><span>TO THE</span></span>
+          <span class="titular">SANCTUARY</span>
+        </h1>
+        <p class="lema aparece aparece--3">Diez comarcas, cien sendas y un trono que alcanzar.</p>
+      </div>
+
+      <nav class="botonera aparece aparece--4" aria-label="Principal">
+        <a class="boton boton--principal" data-steam href="https://store.steampowered.com/" target="_blank" rel="noopener">
+          <i class="boton__doble" aria-hidden="true"></i>
+          <span>VER EN STEAM</span>
+        </a>
+        <a class="boton" href="actualizaciones"><span>ACTUALIZACIONES</span></a>
+        <a class="boton boton--callado" href="tablon">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 4h18v12H10l-5 4.5V16H3z"/></svg>
+          <span>IDEAS Y ERRORES</span>
+        </a>
+      </nav>
+    </div>
+
+    <footer class="portada__pie">
+      <span class="sello">ALFA</span>
+      <p>Todo dibujado a codigo sin assets externos</p>
+      <a class="portada__estudio" href="../../">UN JUEGO DE GONVER ESTUDIO</a>
+    </footer>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/fondo.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

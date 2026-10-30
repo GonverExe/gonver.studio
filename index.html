@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gonver Estudio · Videojuegos</title>
+  <meta name="description" content="Gonver Estudio crea videojuegos. Ahora en desarrollo: Path to the Sanctuary, diez comarcas, cien sendas y un trono que alcanzar.">
+  <meta name="theme-color" content="#04070c">
+  <link rel="canonical" href="https://gonver.studio/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Gonver Estudio">
+  <meta property="og:title" content="Gonver Estudio">
+  <meta property="og:description" content="Videojuegos hechos con fuego azul. Ahora en desarrollo: Path to the Sanctuary.">
+  <meta property="og:url" content="https://gonver.studio/">
+  <meta property="og:image" content="https://gonver.studio/games/path-to-the-sanctuary/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="home/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="home/assets/logo.png">
+  <link rel="apple-touch-icon" href="home/assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap">
+  <!-- Solo los cinco kanji del juego, con la fuente de puntos que usa su web -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&text=%E8%81%96%E5%9F%9F%E3%81%B8%E3%81%AE%E9%81%93&display=swap">
+  <link rel="preload" href="games/path-to-the-sanctuary/assets/fuentes/senda_font.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="home/css/styles.css">
+  <script>
+    document.documentElement.classList.add("js");
+    // Si algún script falla, que no se quede nada escondido esperando su animación
+    window.addEventListener("error", () => document.documentElement.classList.remove("js"), { once: true });
+    // index.html -> /: el servidor (GitHub Pages) sirve las dos, en la barra se ve la limpia
+    if (/^https?:$/.test(location.protocol) && /\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/(index)?\.html$/, "") + location.search + location.hash);
+  </script>
+</head>
+<body>
+  <a class="skip" href="#juegos" data-i18n="skip">Saltar al contenido</a>
+
+  <header class="site-header" data-header>
+    <div class="wrap header-inner">
+      <a class="brand" href="#inicio" data-i18n-label="home" aria-label="Gonver Estudio, inicio">
+        <img class="brand-logo" src="home/assets/logo.png" alt="" width="437" height="501">
+        <span class="brand-name"><strong>GONVER</strong><span>ESTUDIO</span></span>
+      </a>
+
+      <nav class="nav" id="menu" data-nav data-i18n-label="navLabel" aria-label="Principal">
+        <ul class="nav-list">
+          <li><a href="#juegos" data-i18n="navGames">Juegos</a></li>
+          <li><a href="#estudio" data-i18n="navStudio">Estudio</a></li>
+          <li><a href="#noticias" data-i18n="navNews">Noticias</a></li>
+          <li><a href="#comunidad" data-i18n="navCommunity">Comunidad</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-tools">
+        <div class="lang" role="group" data-i18n-label="langLabel" aria-label="Idioma">
+          <div class="lang-options">
+            <button class="lang-btn" type="button" data-lang="es" lang="es" aria-label="Español" aria-pressed="true">ES</button>
+            <button class="lang-btn" type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+          </div>
+        </div>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-controls="menu" aria-expanded="false" data-i18n-label="menuOpen" aria-label="Abrir el menú">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="sr-only">Gonver Estudio</h1>
+
+    <!-- Juego destacado -->
+    <section class="hero senda" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <img class="hero-poster" src="games/path-to-the-sanctuary/assets/img/poster.jpg" alt="" width="1280" height="720" fetchpriority="high">
+        <video class="hero-video" muted loop playsinline preload="none" data-src="games/path-to-the-sanctuary/assets/video/trailer.mp4"></video>
+        <div class="hero-shade"></div>
+      </div>
+
+      <div class="wrap hero-content">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span><span data-i18n="heroEyebrow">Nuevo juego · En alfa</span></p>
+        <p class="senda-kanji" lang="ja">聖域への道</p>
+        <h2 class="senda-title" id="hero-title">
+          <span class="senda-line">PATH</span>
+          <span class="senda-link"><span>TO THE</span></span>
+          <span class="senda-line">SANCTUARY</span>
+        </h2>
+        <p class="hero-tagline" data-i18n="sendaTagline">Diez comarcas, cien sendas y un trono que alcanzar.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" data-trailer="games/path-to-the-sanctuary/assets/video/trailer.mp4">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+            <span data-i18n="watchTrailer">Ver tráiler</span>
+          </button>
+          <a class="btn btn-ghost" href="games/path-to-the-sanctuary/">
+            <span data-i18n="discoverGame">Descubrir el juego</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="wrap hero-foot">
+        <p class="hero-credit">
+          <img src="home/assets/logo.png" alt="" width="437" height="501">
+          <span><span data-i18n="aGameBy">Un juego de</span> <strong>Gonver Estudio</strong></span>
+        </p>
+        <a class="scroll-cue" href="#juegos" data-i18n-label="scrollCue" aria-label="Ir a los juegos"><span></span></a>
+        <button class="round-btn" type="button" data-video-toggle data-i18n-label="videoPause" aria-label="Pausar el vídeo de fondo"></button>
+      </div>
+    </section>
+
+    <!-- Juegos -->
+    <section class="section" id="juegos" aria-labelledby="games-title">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <p class="kicker"><span class="kicker-num">01</span><span data-i18n="navGames">Juegos</span></p>
+          <h2 id="games-title" data-i18n="gamesTitle">Nuestros juegos</h2>
+          <p class="section-lead" data-i18n="gamesLead">Cada juego de Gonver Estudio se forja a fuego lento. Este es nuestro catálogo, y no ha hecho más que empezar.</p>
+        </header>
+      </div>
+      <div class="games" data-reveal>
+        <div class="track" data-track></div>
+      </div>
+    </section>
+
+    <!-- Estudio -->
+    <section class="section studio" id="estudio" aria-labelledby="studio-title">
+      <img class="studio-flame" src="home/assets/logo.png" alt="" width="437" height="501" aria-hidden="true">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <p class="kicker"><span class="kicker-num">02</span><span data-i18n="navStudio">Estudio</span></p>
+          <h2 class="manifesto" id="studio-title" data-i18n-html="manifesto">Hacemos videojuegos con <em>fuego azul</em>: mundos que se recorren a fondo, se pelean de verdad y se construyen <em>junto a quien los juega</em>.</h2>
+          <p class="section-lead" data-i18n="studioLead">En Gonver Estudio hacemos videojuegos. Nos importan tres cosas, y se notan en todo lo que publicamos.</p>
+        </header>
+
+        <ul class="pillars">
+          <li class="pillar" data-reveal>
+            <span class="pillar-num">01</span>
+            <svg class="pillar-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>
+            <h3 data-i18n="p1Title">Hecho a código</h3>
+            <p data-i18n="p1Text">En Path to the Sanctuary todo está dibujado a código, sin assets externos. Cada píxel tiene un porqué.</p>
+          </li>
+          <li class="pillar" data-reveal style="--d: 1">
+            <span class="pillar-num">02</span>
+            <svg class="pillar-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v6M12 15v6"/><circle cx="12" cy="3" r=".5"/><circle cx="12" cy="21" r=".5"/></svg>
+            <h3 data-i18n="p2Title">Desarrollo a la vista</h3>
+            <p data-i18n="p2Text">Cada actualización se publica con su historial, versión a versión. Puedes ver cómo crece el juego desde la primera alfa.</p>
+          </li>
+          <li class="pillar" data-reveal style="--d: 2">
+            <span class="pillar-num">03</span>
+            <svg class="pillar-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/><path d="M5 21h14"/></svg>
+            <h3 data-i18n="p3Title">La comunidad decide</h3>
+            <p data-i18n="p3Text">Las ideas y los errores que envías se votan en un tablón público. Lo más votado es lo que llega antes.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Noticias -->
+    <section class="section" id="noticias" aria-labelledby="news-title">
+      <div class="wrap">
+        <header class="section-head section-head--row" data-reveal>
+          <div>
+            <p class="kicker"><span class="kicker-num">03</span><span data-i18n="navNews">Noticias</span></p>
+            <h2 id="news-title" data-i18n="newsTitle">Diario de desarrollo</h2>
+          </div>
+          <a class="link-arrow" href="games/path-to-the-sanctuary/actualizaciones">
+            <span data-i18n="newsAll">Ver todo el historial</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </header>
+        <div class="news" data-news aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Comunidad -->
+    <section class="community senda" id="comunidad" aria-labelledby="community-title">
+      <div class="community-bg" aria-hidden="true">
+        <img src="games/path-to-the-sanctuary/assets/img/still.jpg" alt="" width="1280" height="720" loading="lazy">
+      </div>
+      <div class="wrap community-inner" data-reveal>
+        <img class="community-icon" src="games/path-to-the-sanctuary/assets/img/icono.png" alt="" width="256" height="256" loading="lazy">
+        <p class="kicker kicker--center"><span class="kicker-num">04</span><span data-i18n="navCommunity">Comunidad</span></p>
+        <h2 id="community-title" data-i18n="communityTitle">Tu idea puede acabar en el juego</h2>
+        <p class="community-text" data-i18n="communityText">Propón lo que te gustaría ver, avisa de lo que falla y vota lo que más importa. El tablón de Path to the Sanctuary está abierto a todo el mundo.</p>
+        <div class="community-actions">
+          <a class="btn btn-primary" href="games/path-to-the-sanctuary/enviar?tipo=idea"><span data-i18n="proposeIdea">Proponer una idea</span></a>
+          <a class="btn btn-ghost" href="games/path-to-the-sanctuary/enviar?tipo=error"><span data-i18n="reportBug">Avisar de un error</span></a>
+          <a class="btn btn-ghost" href="games/path-to-the-sanctuary/tablon"><span data-i18n="viewBoard">Ver el tablón</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#inicio" data-i18n-label="home" aria-label="Gonver Estudio, inicio">
+            <img class="brand-logo" src="home/assets/logo.png" alt="" width="437" height="501">
+            <span class="brand-name"><strong>GONVER</strong><span>ESTUDIO</span></span>
+          </a>
+          <p class="footer-claim" data-i18n="footerClaim">Videojuegos hechos con fuego azul.</p>
+        </div>
+
+        <nav class="footer-cols" data-i18n-label="footerNav" aria-label="Mapa del sitio">
+          <div>
+            <h3 data-i18n="navGames">Juegos</h3>
+            <ul>
+              <li><a href="games/path-to-the-sanctuary/">Path to the Sanctuary</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 data-i18n="navStudio">Estudio</h3>
+            <ul>
+              <li><a href="#estudio" data-i18n="about">Sobre nosotros</a></li>
+              <li><a href="#noticias" data-i18n="navNews">Noticias</a></li>
+              <li data-contact hidden><a href="" data-i18n="contact">Contacto</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 data-i18n="navCommunity">Comunidad</h3>
+            <ul>
+              <li><a href="games/path-to-the-sanctuary/tablon" data-i18n="board">Ideas y errores</a></li>
+              <li><a href="games/path-to-the-sanctuary/actualizaciones" data-i18n="updates">Actualizaciones</a></li>
+            </ul>
+          </div>
+          <div data-socials-col hidden>
+            <h3 data-i18n="follow">Síguenos</h3>
+            <ul data-socials></ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> Gonver Estudio. <span data-i18n="rights">Todos los derechos reservados.</span></p>
+        <a class="link-arrow link-arrow--up" href="#inicio">
+          <span data-i18n="toTop">Volver arriba</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="footer-wordmark" aria-hidden="true">GONVER</p>
+  </footer>
+
+  <p class="toast" data-toast role="status"></p>
+
+  <dialog class="trailer" data-trailer-dialog aria-labelledby="trailer-title">
+    <div class="trailer-box">
+      <h2 class="sr-only" id="trailer-title" data-i18n="trailerTitle">Tráiler de Path to the Sanctuary</h2>
+      <button class="round-btn trailer-close" type="button" data-close-trailer data-i18n-label="close" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <video controls playsinline preload="none"></video>
+    </div>
+  </dialog>
+
+  <!-- Enlace de Steam y Supabase del juego: un solo sitio para las claves -->
+  <script src="games/path-to-the-sanctuary/js/config.js"></script>
+  <script src="home/js/data.js"></script>
+  <script src="home/js/main.js"></script>
+</body>
+</html>
