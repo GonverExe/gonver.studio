@@ -31,6 +31,8 @@ const STUDIO = {
 
   Campos (todos opcionales):
     title        Nombre del juego.
+    titleLines   El nombre partido en líneas: en la franja cerrada se escribe recto y centrado.
+                 Sin él, el nombre va en diagonal a lo largo de la franja.
     kanji        Subtítulo decorativo (p. ej. en japonés).
     pixel        true = el título se escribe con la fuente de puntos del juego.
     status       "released" (Disponible) · "beta" (En beta) · "development" (En desarrollo) · "soon" (Próximamente)
@@ -39,8 +41,10 @@ const STUDIO = {
     platforms    Plataformas, p. ej. ["PC"].
     site         Web del juego.
     steam        Página de Steam.
-    trailer      Vídeo del tráiler: se ve de fondo con la franja abierta y el botón lo abre con sonido.
+    trailer      Vídeo del tráiler: el botón de la franja lo abre con sonido.
     cover        Imagen de fondo de la franja.
+    logo         Logo del juego: va en la franja en lugar del número. Sin él, el del estudio.
+    version      Versión actual: va junto al logo en lugar de la rayita.
     accent       Color de la franja. Si no se indica, se usa el cian de la marca.
     accent2      Segundo color del degradado de los botones.
     onAccent     Color del texto sobre los botones (por defecto, casi negro).
@@ -48,6 +52,7 @@ const STUDIO = {
 const GAMES = [
   {
     title: "Path to the Sanctuary",
+    titleLines: ["Path", "to the", "Sanctuary"],
     kanji: "聖域への道",
     pixel: true,
     status: "beta",
@@ -57,7 +62,9 @@ const GAMES = [
     site: "games/path-to-the-sanctuary/",
     steam: SENDA_CONFIG.steam,
     trailer: "games/path-to-the-sanctuary/assets/video/trailer.mp4",
-    cover: "games/path-to-the-sanctuary/assets/img/poster.jpg",
+    cover: "games/path-to-the-sanctuary/assets/img/menu.jpg",
+    logo: "games/path-to-the-sanctuary/assets/img/icono.png",
+    version: "26.11.01",
     accent: "#f4593a",
     accent2: "#f2c462",
     onAccent: "#2a0e08",

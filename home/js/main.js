@@ -102,7 +102,6 @@
   const STORAGE_KEY = "gv-lang";
   const root = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
 
   const header = document.querySelector("[data-header]");
   const nav = document.querySelector("[data-nav]");
@@ -186,6 +185,9 @@
     const desc = soon ? t("soonText") : pick(game.description);
     const platforms = (game.platforms || []).map((p) => `<li>${esc(p)}</li>`).join("");
     const pixel = game.pixel ? " is-pixel" : "";
+    const logo = game.logo || "home/assets/logo.png";
+    const lines = !soon && game.titleLines
+      && game.titleLines.map((line) => `<span class="stripe-title-line">${esc(pick(line))}</span>`).join("");
     const actions = [
       game.site && `<a class="btn btn-primary" href="${esc(game.site)}"><span>${esc(t("gameSite"))}</span>${ICONS.arrow}</a>`,
       game.trailer && `<button class="btn btn-ghost" type="button" data-trailer="${esc(game.trailer)}">${ICONS.play}<span>${esc(t("watchTrailer"))}</span></button>`,
@@ -193,16 +195,13 @@
     ].filter(Boolean).join("") || `<span class="panel-soon">${esc(t("soonBadge"))}</span>`;
 
     return `
-      <div class="stripe-bg${game.cover ? " has-cover" : ""}">
-        ${game.trailer ? `<video muted loop playsinline preload="none" data-src="${esc(game.trailer)}"></video>` : ""}
-      </div>
+      <div class="stripe-bg${game.cover ? " has-cover" : ""}"></div>
       <div class="stripe-shade"></div>
-      <span class="stripe-bignum" aria-hidden="true">${num}</span>
-      ${soon ? '<img class="stripe-art" src="home/assets/logo.png" alt="" width="437" height="501" loading="lazy">' : ""}
+      <img class="stripe-art${game.logo ? " is-pixel" : ""}" src="${esc(logo)}" alt="" loading="lazy">
       <div class="stripe-face" aria-hidden="true">
-        <span class="stripe-num">${num}</span>
-        <span class="stripe-label">
-          <span class="stripe-title${pixel}">${esc(title)}</span>
+        <span class="stripe-num${game.version ? " has-version" : ""}"><img class="stripe-logo${game.logo ? " is-pixel" : ""}" src="${esc(logo)}" alt="">${game.version ? `<span class="stripe-version">${esc(game.version)}</span>` : ""}</span>
+        <span class="stripe-label${lines ? " is-upright" : ""}">
+          <span class="stripe-title${pixel}">${lines || esc(title)}</span>
           ${soon ? "" : `<span class="stripe-status">${esc(status)}</span>`}
         </span>
       </div>
@@ -241,17 +240,6 @@
       stripe.querySelector(".stripe-hit").setAttribute("aria-expanded", String(open));
       stripe.querySelector(".stripe-panel").inert = !open;
       stripe.querySelector(".stripe-close").inert = !open;
-
-      // Con la franja abierta, el tráiler se ve de fondo sin sonido
-      const video = stripe.querySelector(".stripe-bg video");
-      if (!video) return;
-      if (open && !saveData) {
-        if (!video.getAttribute("src")) video.src = video.dataset.src;
-        video.play().then(() => video.classList.add("is-playing")).catch(() => {});
-      } else {
-        video.pause();
-        video.classList.remove("is-playing");
-      }
     });
   }
 

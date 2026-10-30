@@ -938,21 +938,6 @@ ul { padding: 0; list-style: none; }
   background: linear-gradient(to top, rgba(4, 7, 12, .85), rgba(4, 7, 12, .15) 55%, rgba(4, 7, 12, .45));
 }
 
-/* Tráiler sin sonido de fondo con la franja abierta, ampliado para tapar el HUD */
-.stripe-bg video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.32);
-  transform-origin: 50% 62%;
-  transition: opacity .8s;
-}
-
-.stripe-bg video.is-playing { opacity: 1; }
-
 @keyframes breathe {
   from { opacity: .6; }
   to { opacity: 1; }
@@ -1076,7 +1061,61 @@ ul { padding: 0; list-style: none; }
 }
 
 .track.has-active .stripe:not(.is-active) .stripe-status { opacity: 0; }
+
+/* Nombre recto, centrado y en varias líneas (juegos con titleLines) */
+.stripe-label.is-upright,
+.stripe:first-child .stripe-label.is-upright,
+.stripe:last-child .stripe-label.is-upright {
+  left: 50%;
+  max-width: calc(100% - var(--slant) - 1rem);
+  white-space: normal;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.stripe-label.is-upright .stripe-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: clamp(1.1rem, 1.9vw, 1.75rem);
+  line-height: 1.15;
+}
+
+.stripe-title-line:nth-child(2) {
+  margin: .35em 0 .3em;
+  font-size: .5em;
+  letter-spacing: .4em;
+  color: var(--accent-2);
+  text-shadow: none;
+}
+
+.stripe-label.is-upright .stripe-status {
+  position: static;
+  margin-top: .9rem;
+  translate: none;
+}
+
+/* Con otra franja abierta, la banda es demasiado estrecha para el nombre recto */
+.track.has-active .stripe:not(.is-active) .stripe-label.is-upright {
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.9);
+}
 .track.has-active .stripe:not(.is-active) .stripe-num::after { width: 0; opacity: 0; }
+
+/* La versión del juego ocupa el sitio de la rayita y, como ella, se abre al pasar el ratón */
+.stripe-num.has-version::after { content: none; }
+
+.stripe-version {
+  font-family: var(--font-pixel);
+  font-size: .75rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: var(--accent-2);
+  transition: letter-spacing .5s var(--ease-out), opacity .3s;
+}
+
+.track.has-active .stripe:not(.is-active) .stripe-version { opacity: 0; }
 
 /* Zona de clic: toda la franja */
 .stripe-hit {
@@ -1098,32 +1137,19 @@ ul { padding: 0; list-style: none; }
 .stripe:has(.stripe-hit:focus-visible) .stripe-bg { filter: brightness(1.3); }
 .stripe:has(.stripe-hit:focus-visible) .stripe-title { color: var(--accent); }
 
+/* Logo del juego (o del estudio) en lugar del número */
+.stripe-logo {
+  width: auto;
+  height: 2rem;
+  opacity: .8;
+  transition: opacity .4s;
+}
+
+.is-pixel { image-rendering: pixelated; }
+.stripe:hover .stripe-logo,
+.stripe.is-active .stripe-logo { opacity: 1; }
+
 /* Decoración del estado abierto */
-.stripe-bignum {
-  position: absolute;
-  right: calc(var(--slant) + 3%);
-  bottom: -.2em;
-  z-index: 1;
-  font-family: var(--font-display);
-  font-size: clamp(7rem, 34vh, 22rem);
-  font-weight: 700;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--accent-2) 45%, transparent);
-  pointer-events: none;
-  transform: skewX(-12deg);
-  transform-origin: 100% 100%;
-  translate: 0 .2em;
-  opacity: 0;
-  transition: opacity .3s, translate .9s var(--ease-out);
-}
-
-.stripe.is-active .stripe-bignum {
-  translate: 0 0;
-  opacity: .55;
-  transition-delay: .35s;
-}
-
 .stripe-art {
   position: absolute;
   top: 9%;
@@ -1132,11 +1158,13 @@ ul { padding: 0; list-style: none; }
   width: auto;
   height: 46%;
   pointer-events: none;
-  filter: drop-shadow(0 0 2rem rgba(20, 200, 245, .45));
+  filter: drop-shadow(0 0 2rem color-mix(in srgb, var(--accent) 45%, transparent));
   transform: scale(.85) rotate(-4deg);
   opacity: 0;
   transition: opacity .4s, transform 1s var(--ease-out);
 }
+
+.stripe-art.is-pixel { top: 14%; height: 36%; }
 
 .stripe.is-active .stripe-art {
   transform: none;
@@ -1348,6 +1376,7 @@ ul { padding: 0; list-style: none; }
   .stripe:not(.is-active):hover .stripe-title.is-pixel { color: var(--senda-cream); letter-spacing: .18em; }
   .stripe:not(.is-active):hover .stripe-num { color: var(--ink); }
   .track:not(.has-active) .stripe:hover .stripe-num::after { width: 2.25rem; }
+  .track:not(.has-active) .stripe:hover .stripe-version { letter-spacing: .32em; }
 }
 
 .is-resizing .stripe,
@@ -1488,15 +1517,18 @@ ul { padding: 0; list-style: none; }
     transform: translateY(-50%) rotate(-6.84deg) scale(.9);
   }
 
-  .stripe-bignum {
-    left: 1rem;
-    right: auto;
-    top: calc(var(--slant) + .1rem);
-    bottom: auto;
-    font-size: 24vw;
-    transform-origin: 0 0;
-    translate: 0 -.2em;
+  .stripe-label.is-upright,
+  .stripe:first-child .stripe-label.is-upright,
+  .stripe:last-child .stripe-label.is-upright {
+    left: 50%;
+    align-items: center;
+    padding: 0;
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 50%;
   }
+
+  .stripe-label.is-upright .stripe-title { font-size: clamp(.95rem, 4.2vw, 1.3rem); }
+  .stripe-label.is-upright .stripe-status { margin-top: .5rem; }
 
   .stripe-art {
     top: 16%;
