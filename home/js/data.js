@@ -1,15 +1,15 @@
 /*
-  Datos de Gonver Estudio: lo que cambia a menudo, sin tocar main.js.
+  Datos de gonver estudio: lo que cambia a menudo, sin tocar main.js.
   title, titleLines, genre y description admiten una cadena o { es, en }
   (si falta el inglés se usa el español).
 */
 
-// Enlace de Steam y claves de Supabase del juego (games/path-to-the-sanctuary/js/config.js)
+// Enlace de Steam del juego (games/path-to-the-sanctuary/js/config.js)
 const SENDA_CONFIG = window.SENDA || {};
 
 const STUDIO = {
-  // Correo de contacto (vacío = no se muestra)
-  email: "",
+  // Correo de contacto, directo con el desarrollador (vacío = no se muestra)
+  email: "gonverexe@gonver.studio",
 
   // Redes del pie: las vacías no se muestran
   socials: {
@@ -62,19 +62,3 @@ const GAMES = [
   {}, // 03
   {}, // 04
 ];
-
-/*
-  Noticias: últimas entradas del historial del juego (Supabase).
-    game      Nombre en cada tarjeta.
-    supabase  { url, clave, tabla } de config.js.
-    page      Página del historial completo.
-    cover     Imagen si la entrada no trae capturas.
-    count     Cuántas tarjetas se muestran.
-*/
-const NEWS = {
-  game: "Path to the Sanctuary",
-  supabase: SENDA_CONFIG.supabase,
-  page: "games/path-to-the-sanctuary/actualizaciones.html",
-  cover: "games/path-to-the-sanctuary/assets/img/still.jpg",
-  count: 3,
-};

@@ -1,4 +1,4 @@
-/* Gonver Estudio · web del estudio */
+/* gonver estudio · web del estudio */
 (() => {
   "use strict";
 
@@ -9,14 +9,13 @@
   */
   const I18N = {
     es: {
-      docTitle: "Gonver Estudio",
-      docDesc: "Gonver Estudio crea videojuegos. Ahora en desarrollo: Path to the Sanctuary, diez comarcas, cien sendas y un trono que alcanzar.",
+      docTitle: "gonver estudio",
+      docDesc: "gonver estudio crea videojuegos. Ahora en desarrollo: Path to the Sanctuary, diez comarcas, cien sendas y un trono que alcanzar.",
       skip: "Saltar al contenido",
-      home: "Gonver Estudio, inicio",
+      home: "gonver estudio, inicio",
       navLabel: "Principal",
       navGames: "Juegos",
       navStudio: "Estudio",
-      navNews: "Noticias",
       navCommunity: "Comunidad",
       menuOpen: "Abrir el menú",
       menuClose: "Cerrar el menú",
@@ -32,38 +31,23 @@
       videoPlay: "Reanudar el vídeo de fondo",
 
       gamesTitle: "Nuestros juegos",
-      gamesLead: "Cada juego de Gonver Estudio se forja a fuego lento. Este es nuestro catálogo, y no ha hecho más que empezar.",
+      gamesLead: "Esto no ha hecho más que empezar.",
       gameSite: "Web del juego",
       status_released: "Disponible",
       status_beta: "En beta",
       status_development: "En desarrollo",
       status_soon: "Próximamente",
       soonHeadline: "Algo nuevo se está forjando",
-      soonText: "Este hueco está reservado para el próximo juego de Gonver Estudio. Muy pronto podrás descubrirlo aquí.",
+      soonText: "Este hueco está reservado para el próximo juego de gonver estudio. Muy pronto podrás descubrirlo aquí.",
       soonBadge: "Muy pronto",
       close: "Cerrar",
 
-      manifesto: "Hacemos videojuegos con <em>fuego azul</em>: mundos que se recorren a fondo, se pelean de verdad y se construyen <em>junto a quien los juega</em>.",
-      studioLead: "En Gonver Estudio hacemos videojuegos. Nos importan tres cosas, y se notan en todo lo que publicamos.",
-      p1Title: "Hecho a código",
-      p1Text: "En Path to the Sanctuary todo está dibujado a código, sin assets externos. Cada píxel tiene un porqué.",
+      manifesto: "Todo está hecho por <em>una única persona</em>, pero con ayuda de <em>la comunidad</em>.",
+      studioLead: "En gonver estudio hacemos videojuegos y nos importan dos cosas.",
       p2Title: "Desarrollo a la vista",
-      p2Text: "Cada actualización se publica con su historial, versión a versión. Puedes ver cómo crece el juego desde la primera versión.",
+      p2Text: "Cada actualización se publica versión a versión, lo que te permite ver cómo crece el juego desde la primera versión.",
       p3Title: "La comunidad decide",
       p3Text: "Las ideas y los errores que envías se votan en un tablón público. Lo más votado es lo que llega antes.",
-
-      newsTitle: "Diario de desarrollo",
-      newsAll: "Ver todo el historial",
-      newsLatest: "Lo último",
-      newsMilestone: "Hito",
-      newsRead: "Leer más",
-      newsEmptyTitle: "El diario acaba de empezar",
-      newsEmptyText: "Todavía no hay entradas publicadas. Las novedades del desarrollo aparecerán aquí.",
-      newsErrorTitle: "No hemos podido cargar las noticias",
-      newsErrorText: "Puedes intentarlo de nuevo o leer el historial completo en la web del juego.",
-      retry: "Reintentar",
-      openHistory: "Abrir el historial",
-      untitled: "Sin título",
 
       communityTitle: "Tu idea puede acabar en el juego",
       communityText: "Propón lo que te gustaría ver, avisa de lo que falla y vota lo que más importa. El tablón de Path to the Sanctuary está abierto a todo el mundo.",
@@ -71,12 +55,12 @@
       reportBug: "Avisar de un error",
       viewBoard: "Ver el tablón",
 
-      footerClaim: "Videojuegos hechos con fuego azul.",
+      footerClaim: "Videojuegos hechos con sus jugadores.",
       footerNav: "Mapa del sitio",
       about: "Sobre nosotros",
-      contact: "Contacto",
-      board: "Ideas y errores",
-      updates: "Actualizaciones",
+      support: "Servicio técnico",
+      supportText: "¿Algo no funciona o tienes dudas? Escribe en privado, directamente al desarrollador.",
+      contact: "Contactar",
       follow: "Síguenos",
       rights: "Todos los derechos reservados.",
       toTop: "Volver arriba",
@@ -87,7 +71,6 @@
 
   // Aviso del botón de un idioma que aún no tiene textos, escrito en ese idioma
   const LANG_SOON = { en: "English version coming soon." };
-  const LOCALES = { es: "es-ES", en: "en-GB" };
 
   const ICONS = {
     play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
@@ -108,7 +91,6 @@
   const langOptions = document.querySelector(".lang-options");
   const langButtons = [...document.querySelectorAll(".lang-btn")];
   const trackEl = document.querySelector("[data-track]");
-  const newsEl = document.querySelector("[data-news]");
   const toastEl = document.querySelector("[data-toast]");
   const heroVideo = document.querySelector(".hero-video");
   const videoToggle = document.querySelector("[data-video-toggle]");
@@ -118,7 +100,6 @@
   const hasTexts = (code) => Object.keys(I18N[code] || {}).length > 0;
 
   let lang = initialLang();
-  let news = { state: "loading", rows: [] };
 
   function initialLang() {
     let saved = null;
@@ -184,7 +165,7 @@
     const desc = soon ? t("soonText") : pick(game.description);
     const platforms = (game.platforms || []).map((p) => `<li>${esc(p)}</li>`).join("");
     const pixel = game.pixel ? " is-pixel" : "";
-    const logo = game.logo || "home/assets/logo.png";
+    const logo = game.logo || "home/assets/logo-wordmark.png";
     const logoPixel = game.logo ? " is-pixel" : "";
     const lines = !soon && game.titleLines
       && game.titleLines.map((line) => `<span class="stripe-title-line">${esc(pick(line))}</span>`).join("");
@@ -197,7 +178,7 @@
     return `
       <div class="stripe-bg${game.cover ? " has-cover" : ""}"></div>
       <div class="stripe-shade"></div>
-      <img class="stripe-art${logoPixel}" src="${esc(logo)}" alt="" loading="lazy">
+      <img class="stripe-art${game.logo ? logoPixel : " is-wordmark"}" src="${esc(logo)}" alt="" loading="lazy">
       <div class="stripe-face" aria-hidden="true">
         <span class="stripe-num${game.version ? " has-version" : ""}"><img class="stripe-logo${logoPixel}" src="${esc(logo)}" alt="">${game.version ? `<span class="stripe-version">${esc(game.version)}</span>` : ""}</span>
         <span class="stripe-label${lines ? " is-upright" : ""}">
@@ -289,138 +270,6 @@
     resizeTimer = setTimeout(() => root.classList.remove("is-resizing"), 150);
   });
 
-  // ---------- Noticias (historial de actualizaciones del juego) ----------
-
-  const newsCount = NEWS.count || 3;
-
-  // "2026-09-20" como fecha local, no como medianoche UTC
-  function dateOf(text) {
-    const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(text || "");
-    return m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3])) : null;
-  }
-
-  // Solo imágenes http(s): nada de javascript: ni data:
-  function imagesOf(row) {
-    let list = row.imagenes;
-    if (typeof list === "string") list = list.split(/[\n,]+/);
-    if (!Array.isArray(list)) return [];
-    return list.map((s) => String(s).trim()).filter((src) => {
-      try { return ["https:", "http:"].includes(new URL(src, location.href).protocol); } catch { return false; }
-    });
-  }
-
-  const isMilestone = (row) => row.hito === true || row.hito === "true";
-
-  // Texto plano para el resumen: sin viñetas ni *énfasis*
-  const plain = (text) => String(text || "").replace(/^\s*[-*•]\s+/gm, "").replace(/\*+/g, "").replace(/\s+/g, " ").trim();
-
-  async function loadNews() {
-    news = { state: "loading", rows: [] };
-    renderNews();
-
-    const sb = NEWS.supabase || {};
-    if (!sb.url || !sb.clave) {
-      news = { state: "error", rows: [] };
-      renderNews();
-      return;
-    }
-
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 8000);
-    try {
-      const base = String(sb.url).replace(/\/+$/, "");
-      const table = encodeURIComponent(sb.tabla || "actualizaciones");
-      const res = await fetch(`${base}/rest/v1/${table}?select=*`, {
-        headers: { apikey: sb.clave, Accept: "application/json" },
-        signal: controller.signal,
-      });
-      if (!res.ok) throw new Error(`Supabase respondió ${res.status}`);
-      const rows = (await res.json()).filter((row) => row && row.publicada !== false);
-      // De la más nueva a la más antigua; a igual fecha, por versión (como en la web del juego)
-      rows.sort((a, b) =>
-        String(b.fecha || "").localeCompare(String(a.fecha || "")) ||
-        String(b.version || "").localeCompare(String(a.version || ""), "es", { numeric: true }));
-      news = { state: rows.length ? "ready" : "empty", rows: rows.slice(0, newsCount) };
-    } catch (error) {
-      console.warn("No se han podido leer las noticias:", error);
-      news = { state: "error", rows: [] };
-    } finally {
-      clearTimeout(timer);
-    }
-    renderNews();
-  }
-
-  function newsCardHTML(row, i) {
-    const title = String(row.titulo || "").trim() || t("untitled");
-    const version = String(row.version || "").trim();
-    const showVersion = version && version.toLowerCase() !== title.toLowerCase();
-    const date = dateOf(row.fecha);
-    const milestone = isMilestone(row);
-    const badge = milestone ? t("newsMilestone") : i === 0 ? t("newsLatest") : "";
-    const image = imagesOf(row)[0] || NEWS.cover;
-    const excerpt = plain(row.descripcion);
-    const dateText = date
-      ? new Intl.DateTimeFormat(LOCALES[lang] || "es-ES", { day: "numeric", month: "long", year: "numeric" }).format(date)
-      : "";
-
-    return `
-      <a class="news-card" href="${esc(NEWS.page)}" data-reveal style="--d:${i}">
-        <div class="news-media">
-          <img src="${esc(image)}" alt="" loading="lazy" decoding="async">
-          ${badge ? `<span class="news-badge${milestone ? " is-milestone" : ""}">${esc(badge)}</span>` : ""}
-        </div>
-        <div class="news-body">
-          <p class="news-meta">
-            <span>${esc(NEWS.game)}</span>
-            ${showVersion ? `<span>${esc(version.toUpperCase())}</span>` : ""}
-            ${date ? `<time datetime="${esc(String(row.fecha).slice(0, 10))}">${esc(dateText)}</time>` : ""}
-          </p>
-          <h3 class="news-title">${esc(title)}</h3>
-          ${excerpt ? `<p class="news-excerpt">${esc(excerpt)}</p>` : ""}
-          <span class="news-more">${esc(t("newsRead"))}${ICONS.arrow}</span>
-        </div>
-      </a>`;
-  }
-
-  function renderNews() {
-    newsEl.setAttribute("aria-busy", String(news.state === "loading"));
-
-    if (news.state === "loading") {
-      const skeleton = '<div class="news-card is-skeleton" aria-hidden="true"><div class="news-media"></div><div class="news-body"><span></span><span></span><span></span></div></div>';
-      newsEl.innerHTML = skeleton.repeat(newsCount);
-      return;
-    }
-
-    if (news.state === "ready") {
-      newsEl.innerHTML = news.rows.map(newsCardHTML).join("");
-      reveal(newsEl);
-      return;
-    }
-
-    const failed = news.state === "error";
-    newsEl.innerHTML = `
-      <div class="news-note" data-reveal>
-        <img class="news-note-icon" src="home/assets/logo.png" alt="" width="437" height="501">
-        <div class="news-note-text">
-          <h3>${esc(t(failed ? "newsErrorTitle" : "newsEmptyTitle"))}</h3>
-          <p>${esc(t(failed ? "newsErrorText" : "newsEmptyText"))}</p>
-        </div>
-        <div class="news-note-actions">
-          ${failed ? `<button class="btn btn-ghost" type="button" data-news-retry><span>${esc(t("retry"))}</span></button>` : ""}
-          <a class="btn btn-primary" href="${esc(NEWS.page)}"><span>${esc(t("openHistory"))}</span>${ICONS.arrow}</a>
-        </div>
-      </div>`;
-    reveal(newsEl);
-  }
-
-  // El botón se sustituye al recargar: el foco pasa al nuevo botón o a la primera noticia
-  newsEl.addEventListener("click", async (event) => {
-    if (!event.target.closest("[data-news-retry]")) return;
-    await loadNews();
-    const next = newsEl.querySelector("[data-news-retry], a");
-    if (next) next.focus();
-  });
-
   // ---------- Pie: redes, contacto y año ----------
 
   function renderFooter() {
@@ -433,7 +282,10 @@
     const contact = document.querySelector("[data-contact]");
     if (STUDIO.email) {
       contact.hidden = false;
-      contact.querySelector("a").href = `mailto:${STUDIO.email}`;
+      const link = contact.querySelector("a");
+      link.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(STUDIO.email)}`;
+      link.target = "_blank";
+      link.rel = "noopener";
     }
 
     document.querySelector("[data-year]").textContent = new Date().getFullYear();
@@ -463,7 +315,6 @@
     });
 
     renderGames();
-    renderNews();
     paintVideoToggle();
   }
 
@@ -614,5 +465,4 @@
   setLang(lang, { persist: false });
   reveal(document);
   syncHero();
-  loadNews();
 })();
